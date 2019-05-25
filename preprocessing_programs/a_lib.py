@@ -121,7 +121,8 @@ def get_ecg_sqrs125_wavedet(DataID, loacl_max_index=5):
     ecg, sqrs125, annotation, sf, name = read_record(ECGpath)
     return (ecg,
             R_Senior_Selection(sqrs125, ecg, loacl_max_index),
-            R_Senior_Selection(wavedet_, ecg, loacl_max_index),)
+            R_Senior_Selection(wavedet_, ecg, loacl_max_index),
+            annotation)
 
 def get_ecg_sqrs125_anno_sf(DataID, loacl_max_index=5):
     ECGpath = '/Users/rex/Documents/MATLAB/ecg_kit/ecg-kit/raw_ECG/' + DataID
