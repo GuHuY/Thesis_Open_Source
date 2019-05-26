@@ -4,9 +4,9 @@ from pathlib import Path
 from a_lib import *
 
 half_sample_size = 30
-my_fmt = '%d'
+my_fmt = '%.4f'
 for idx in range(0, half_sample_size*2):
-    my_fmt += ' %d'
+    my_fmt += ' %.4f'
 
 a = ['a'+str(x).zfill(2) for x in range(1,21)]
 b = ['b'+str(x).zfill(2) for x in range(1,6)]
@@ -69,13 +69,13 @@ for DataID in datalist:
 
 
     # 指标
-    Indicator = features_arr[:,1] + features_arr[:,2] 
-    
+    Indicator = features_arr[:,1] - features_arr[:,2]
+
     # 编码----
 
     #----
 
-    file_path = '/Users/rex/python/z_thesis/RR_trace_wavedet/' + DataID + '.txt'
+    file_path = '/Users/rex/python/Thesis_Open_Source/RR_trace1/' + DataID + '.txt'
     # file_path = '/Users/rex/python/z_thesis/RR_trace_sqrs/' + DataID + '.txt'
     path = Path(file_path)
     if path.exists():
