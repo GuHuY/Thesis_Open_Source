@@ -98,7 +98,7 @@ c = ['c'+str(x).zfill(2) for x in range(1,11)]
 datalist = a + b + c
 for DataID in datalist:
     ecg, sqrs125, wavedet_, annotation = get_ecg_sqrs125_wavedet(DataID, 5)
-    QRS = sqrs125
+    QRS = wavedet_
     # QRS = sqrs125
 
     # RR间期
@@ -116,7 +116,7 @@ for DataID in datalist:
     # # 贴标签
     # After_add_filter_list = Add_label(After_ups_filter_list, annotation)
 
-    file_path = '/Users/rex/python/Thesis_Open_Source/RR_left_n7/' + DataID + '.txt'
+    file_path = '/Users/rex/python/Thesis_Open_Source/RR_left_n1_wavedet/' + DataID + '.txt'
     path = Path(file_path)
     if path.exists():
         print('update ', end="")
@@ -142,15 +142,5 @@ for DataID in datalist:
         if len(sample_list) == half_sample_size*2+1:
             sample_with_label.append(sample_list)
     np.savetxt(file_path, np.array(sample_with_label), fmt=my_fmt)
-
-
-    # 保存
-    # file_path = '/Users/rex/python/Thesis_Open_Source/RR_left_sqrs/' + DataID + '.txt'
-    # path = Path(file_path)
-    # if path.exists():
-    #     print('update ', end="")
-    #     path.unlink()  # delete file
-    # print(DataID)
-    # Short_Label_Sign = False
-    # np.savetxt(file_path, np.array(temp), fmt=my_fmt)
+    
 pass

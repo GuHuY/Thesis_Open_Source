@@ -13,7 +13,7 @@ LR = 0.0001  # learning rate
 
 # 输入数据处理
 # file_name = '/Users/rex/python/z_thesis/fully_combine.txt'
-file_name = '/Users/rex/python/Thesis_Open_Source/RR_left_n7/combine.txt'
+file_name = '/Users/rex/python/Thesis_Open_Source/RR_PT1/combine.txt'
 
 
 # test_data_size = 1000

@@ -13,10 +13,10 @@ b = ['b'+str(x).zfill(2) for x in range(1,6)]
 c = ['c'+str(x).zfill(2) for x in range(1,11)]
 datalist = a + b + c
 for DataID in datalist:
-    ecg, wavedet_, annotation, samp_freq = get_ecg_wavedwet_anno_sf(DataID, 5)
-    QRS = wavedet_
-    # ecg, sqrs125, annotation, samp_freq = get_ecg_wavedwet_anno_sf(DataID, 5)
-    # QRS = sqrs125
+    # ecg, wavedet_, annotation, samp_freq = get_ecg_wavedwet_anno_sf(DataID, 5)
+    # QRS = wavedet_
+    ecg, sqrs125, annotation, samp_freq = get_ecg_wavedwet_anno_sf(DataID, 5)
+    QRS = sqrs125
     features_list, baseline_list = get_feature(QRS, ecg)
     features_arr = np.array(features_list)
     QRS_arr = np.array(QRS)
