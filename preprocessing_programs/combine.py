@@ -3,8 +3,9 @@ import numpy as np
 
 # /Users/rex/python/z_thesis/raw_ECG
 
-RR_data_address = '/Users/rex/python/z_thesis/RR_trace_less/'
-Output_address = '/Users/rex/python/z_thesis/RR_trace_less/'
+# RR_data_address = '/Users/rex/python/z_thesis/RR_trace_less/'
+RR_data_address = '/Users/rex/python/Thesis_Open_Source/RR_left_wavedet/'
+Output_address = RR_data_address
 # a01-a20, b01-b05, c01-c10
 a = ['a'+str(x).zfill(2) for x in range(1,21)]
 b = ['b'+str(x).zfill(2) for x in range(1,6)]
@@ -30,6 +31,11 @@ for file in file_list:
     data = np.loadtxt(file_name).tolist()
     fully_combined_data.extend(data)
 
-np.savetxt(Output_address +'trace_less_combine.txt', 
+# np.savetxt(Output_address +'trace_sqrs_combine.txt', 
+#            np.array(fully_combined_data),
+#            fmt='%d')
+
+
+np.savetxt(Output_address +'left_wavedet_combine.txt', 
            np.array(fully_combined_data),
-           fmt='%d')
+           fmt='%.4f')

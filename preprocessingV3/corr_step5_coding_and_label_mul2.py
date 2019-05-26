@@ -70,6 +70,7 @@ for DataID in datalist:
 
     # 指标
     Indicator = features_arr[:,1] + features_arr[:,2] 
+    
     # 编码----
 
     #----
@@ -81,7 +82,7 @@ for DataID in datalist:
         print('update ', end="")
         path.unlink()  # delete file
     print(DataID)
-    Short_Label_Sign = False
+    # Short_Label_Sign = False
 
     T = samp_freq * 60
     QRS_list = list(QRS_arr)
