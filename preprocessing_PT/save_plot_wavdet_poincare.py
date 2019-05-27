@@ -134,7 +134,7 @@ def R_Senior_Selection(QRS, ECG, boundary):
 
 
 
-a = ['a'+str(x).zfill(2) for x in range(1,7)]
+a = ['a'+str(x).zfill(2) for x in range(1,21)]
 b = ['b'+str(x).zfill(2) for x in range(1,6)]
 c = ['c'+str(x).zfill(2) for x in range(1,11)]
 datalist = a + b + c
@@ -188,5 +188,5 @@ for DataID in datalist:
     plt.scatter(X, Y, marker='.', alpha=0.3, s=5)
     plt.xlabel('RRn(ms)')
     plt.ylabel('RRn+1(ms)')
-    plt.savefig("plot_wavedet_poincare/" + DataID + ".png")
+    plt.savefig("preprocessing_PT/plot_wavedet_poincare/" + DataID + ".png")
     pass

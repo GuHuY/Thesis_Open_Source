@@ -54,12 +54,12 @@ Y = features_arr[:,2]*10
 Z = features_arr[:,0]   
 
 #H'修正
-# Z = []
-# temp = list(features_arr[:, 0])
-# temp = [temp[0]] + temp + [temp[-1]]
-# for idx in range(1, len(temp)-1):
-#     Z.append(min([temp[idx-1], temp[idx], temp[idx+1]]))
-# Z = np.array(Z)
+Z = []
+temp = list(features_arr[:, 0])
+temp = [temp[0]] + temp + [temp[-1]]
+for idx in range(1, len(temp)-1):
+    Z.append(min([temp[idx-1], temp[idx], temp[idx+1]]))
+Z = np.array(Z)
 
 #--------------观察三维散点分布-------------------#
 fig = plt.figure()
@@ -69,9 +69,9 @@ fig.colorbar(m_sactter, shrink=0.5)
 ax.set_xlim(0, 1.1*X.max())
 ax.set_ylim(0, 1.1*Y.max())
 ax.set_zlim(1.1*Z.min(), 1.1*Z.max())
-ax.set_zlabel('Z')
-ax.set_ylabel('Y')
-ax.set_xlabel('X')
+ax.set_zlabel('H(V)')
+ax.set_ylabel('RRn+1(ms)')
+ax.set_xlabel('RRn(ms)')
 # ax.view_init(90, 270)
 # ax.view_init(30, 270-45)
 # ax.view_init(30, 45)

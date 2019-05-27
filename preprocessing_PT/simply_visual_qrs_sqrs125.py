@@ -66,7 +66,7 @@ def R_Senior_Selection(QRS, ECG, boundary):
 #     else: return integer+1
 
 ###### Acquire the ecg record and corresponding wavedet result from folder ######
-DataID = 'a04'
+DataID = 'a08'
 ECGpath = '/Users/rex/Documents/MATLAB/ecg_kit/ecg-kit/raw_ECG/' + DataID
 # QRSpath = ECGpath + '_QRS_detection'
 
@@ -78,12 +78,12 @@ ecg, sqrs125, annotation, sf, name = read_record(ECGpath)
 QRS = R_Senior_Selection(sqrs125, ecg, 4)
 
 ###### 求QRS附近基线 - 均值+中位数/2 ######
-# baseline_list = []
-# for val in QRS:
-#     segment = ecg[val-16: val-6] + ecg[val+6: val+16]
-#     base_mean = (sum(segment)-max(segment)-min(segment)) / len(segment)
-#     base_median = median(segment)
-#     baseline_list.append((base_median+base_mean)/2)
+baseline_list = []
+for val in QRS:
+    segment = ecg[val-16: val-6] + ecg[val+6: val+16]
+    base_mean = (sum(segment)-max(segment)-min(segment)) / len(segment)
+    base_median = median(segment)
+    baseline_list.append((base_median+base_mean)/2)
 
 
 plt.figure()
@@ -107,7 +107,7 @@ plt.plot(QRS,
          [ecg[t] for t in QRS],
          'x',
          label='QRS from .qrs')
-
+plt.plot(QRS, baseline_list, 'o', label='baseline')
 
 plt.xlabel('Time(0.01s)')
 plt.ylabel('Voltage(v)')
