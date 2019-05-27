@@ -9,12 +9,12 @@ random.seed(5)
 #666 87
 #73  87
 # LR = 0.0001  # learning rate
-LR = 0.001  # quicker train
+LR = 0.0001  # quicker train
 
 # 输入数据处理
 
 # file_name = '/Users/rex/python/Thesis_Open_Source/RR_RV1_wavedet/combine.txt'
-file_name = '/Users/rex/python/Thesis_Open_Source/White_Noise_Test/raw_noise/combine.txt'
+file_name = '/Users/rex/python/Thesis_Open_Source/White_Noise_Test/RV_noise/combine.txt'
 
 # test_data_size = 1000
 # file_name = '/Users/rex/python/z_thesis/RR_data/a01.txt'

@@ -63,10 +63,18 @@ cdict = {'red':  ((csegment[0], 0, red[0]),
 cmap = LinearSegmentedColormap('Rd_Bl_Rd', cdict, 256)
 
 def wgn(x, snr):
+    """
+    parameters:
+        x(np.array): input data
+        snr(int):SNR(db)
+    return：
+        (np.array): data with noise
+    """
     snr = 10**(snr/10.0)
     xpower = np.sum(x**2)/len(x)
     npower = xpower / snr
-    return np.random.randn(len(x)) * np.sqrt(npower)
+    noise = np.random.randn(len(x)) * np.sqrt(npower)
+    return x + noise
 
 
 def iu_deepflatten(a): 
