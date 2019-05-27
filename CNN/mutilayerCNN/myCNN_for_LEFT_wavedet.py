@@ -9,11 +9,11 @@ random.seed(5)
 #666 87
 #73  87
 # LR = 0.0001  # learning rate
-LR = 0.0001  # learning rate
+LR = 0.001  # learning rate
 
 # 输入数据处理
 # file_name = '/Users/rex/python/z_thesis/fully_combine.txt'
-file_name = '/Users/rex/python/Thesis_Open_Source/RR_PT1/combine.txt'
+file_name = '/Users/rex/python/Thesis_Open_Source/RR_RV1_wavedet/combine.txt'
 
 
 # test_data_size = 1000

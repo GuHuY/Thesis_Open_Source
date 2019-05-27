@@ -105,10 +105,10 @@ for DataID in datalist:
     RR_interval_arr = np.array(QRS[1:]) - np.array(QRS[:-1])
 
     # # 均值滤波
-    After_mov_filter_list = Moving_Mean_Filter(RR_interval_arr, 7)
+    # After_mov_filter_list = Moving_Mean_Filter(RR_interval_arr, 7)
 
     # # 导数滤波
-    After_der_filter_list = Derivative_Filter(After_mov_filter_list)
+    # After_der_filter_list = Derivative_Filter(After_mov_filter_list)
 
     # # 维度均一化
     # After_ups_filter_list = Upsampling(QRS[1:], After_der_filter_list)
@@ -116,7 +116,7 @@ for DataID in datalist:
     # # 贴标签
     # After_add_filter_list = Add_label(After_ups_filter_list, annotation)
 
-    file_path = '/Users/rex/python/Thesis_Open_Source/RR_left_n1_wavedet/' + DataID + '.txt'
+    file_path = '/Users/rex/python/Thesis_Open_Source/RR_raw_wavedet/' + DataID + '.txt'
     path = Path(file_path)
     if path.exists():
         print('update ', end="")
@@ -137,10 +137,10 @@ for DataID in datalist:
             if QRS_list[i] > middle_Time:
                 middle_QRS_idx = wedge = i
                 break
-        sample_list = list(After_der_filter_list[middle_QRS_idx-half_sample_size:middle_QRS_idx+half_sample_size])
+        sample_list = list(RR_interval_arr[middle_QRS_idx-half_sample_size:middle_QRS_idx+half_sample_size])
         sample_list.append(label)
         if len(sample_list) == half_sample_size*2+1:
             sample_with_label.append(sample_list)
     np.savetxt(file_path, np.array(sample_with_label), fmt=my_fmt)
-    
+
 pass

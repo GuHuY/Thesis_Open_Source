@@ -15,7 +15,7 @@ datalist = a + b + c
 for DataID in datalist:
     # ecg, wavedet_, annotation, samp_freq = get_ecg_wavedwet_anno_sf(DataID, 5)
     # QRS = wavedet_
-    ecg, sqrs125, annotation, samp_freq = get_ecg_wavedwet_anno_sf(DataID, 5)
+    ecg, sqrs125, annotation, samp_freq = get_ecg_sqrs125_anno_sf(DataID, 5)
     QRS = sqrs125
     features_list, baseline_list = get_feature(QRS, ecg)
     features_arr = np.array(features_list)
@@ -75,7 +75,7 @@ for DataID in datalist:
 
     #----
 
-    file_path = '/Users/rex/python/Thesis_Open_Source/RR_trace1/' + DataID + '.txt'
+    file_path = '/Users/rex/python/Thesis_Open_Source/RR_PT1/' + DataID + '.txt'
     # file_path = '/Users/rex/python/z_thesis/RR_trace_sqrs/' + DataID + '.txt'
     path = Path(file_path)
     if path.exists():

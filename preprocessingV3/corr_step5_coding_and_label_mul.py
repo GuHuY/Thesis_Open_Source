@@ -72,7 +72,7 @@ for DataID in datalist:
 
     #----
 
-    file_path = '/Users/rex/python/z_thesis/RR_trace/' + DataID + '.txt'
+    file_path = '/Users/rex/python/z_thesis/RR_RV1/' + DataID + '.txt'
     path = Path(file_path)
     if path.exists():
         print('update ', end="")

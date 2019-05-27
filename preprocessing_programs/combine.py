@@ -4,7 +4,7 @@ import numpy as np
 # /Users/rex/python/z_thesis/raw_ECG
 
 # RR_data_address = '/Users/rex/python/z_thesis/RR_trace_less/'
-RR_data_address = '/Users/rex/python/Thesis_Open_Source/RR_left_n1_wavedet/'
+RR_data_address = '/Users/rex/python/Thesis_Open_Source/RR_RV1_wavedet/'
 Output_address = RR_data_address
 # a01-a20, b01-b05, c01-c10
 a = ['a'+str(x).zfill(2) for x in range(1,21)]
