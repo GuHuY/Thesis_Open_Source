@@ -48,10 +48,10 @@ tf_y = tf.placeholder(tf.int32, [None, 2])# input y
 conv1 = tf.keras.layers.Conv1D(16, 5, padding='same', activation=tf.nn.relu)(ecg) # -> (360, 16)
 pool1 = tf.keras.layers.MaxPool1D(strides=2, padding='same')(conv1) # -> (180, 16)
 
-img_shape = [128, 32, 32, 64]
-Wx_plus_b = tf.Variable(tf.random_normal(img_shape))
-axis = list(range(len(img_shape) - 1))
-wb_mean, wb_var = tf.nn.moments(Wx_plus_b, axis)
+# img_shape = [128, 32, 32, 64]
+# Wx_plus_b = tf.Variable(tf.random_normal(img_shape))
+# axis = list(range(len(img_shape) - 1))
+# wb_mean, wb_var = tf.nn.moments(Wx_plus_b, axis)
 
 
 # 卷积第二层
