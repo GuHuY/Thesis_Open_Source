@@ -12,14 +12,14 @@ random.seed(5)
 LR = 0.0001  # quicker train
 
 # 输入数据处理
-
-# file_name = '/Users/rex/python/Thesis_Open_Source/RR_RV1_wavedet/combine.txt'
-file_name = '/Users/rex/python/Thesis_Open_Source/RR_RV3/combine.txt'
+# data_name = 'RR_PT2_wavedet'
+data_name = 'White_Noise_Test/raw_noise' 
+file_path = '/Users/rex/python/Thesis_Open_Source/' + data_name + '/'
 
 # test_data_size = 1000
 # file_name = '/Users/rex/python/z_thesis/RR_data/a01.txt'
 
-data = np.loadtxt(file_name)
+data = np.loadtxt(file_path+'combine.txt')
 nrow, nfeatures = data.shape
 # nrow *= 0.1
 random.shuffle(data)
@@ -81,22 +81,35 @@ _, FN_op = tf.metrics.false_negatives(labels=tf.argmax(tf_y, axis=1), prediction
 _, FP_op = tf.metrics.false_positives(labels=tf.argmax(tf_y, axis=1), predictions=tf.argmax(output, axis=1))
 _, TN_op = tf.metrics.true_negatives(labels=tf.argmax(tf_y, axis=1), predictions=tf.argmax(output, axis=1))
 _, TP_op = tf.metrics.true_positives(labels=tf.argmax(tf_y, axis=1), predictions=tf.argmax(output, axis=1))
+saver = tf.train.Saver(max_to_keep=4)
+tf.summary.scalar('AUC_', AUC_op)
+tf.summary.scalar('Acc_', (TP_op+TN_op)/(FP_op+FN_op+TP_op+TN_op))
+tf.summary.scalar('Sen_', TP_op/(TP_op+FN_op))
+tf.summary.scalar('Spe_', TN_op/(FP_op+TN_op))
+tf.summary.scalar('Loss_', loss)
+# tf.summary.scalar('zFN', FN_op)
+# tf.summary.scalar('zFP', FP_op)
+# tf.summary.scalar('zTN', TN_op)
+# tf.summary.scalar('zTP', TP_op)
+merge_summary = tf.summary.merge_all()
+
 
 sess = tf.Session()
+
 init_op = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer()) # the local var is for accuracy_op
 sess.run(init_op)     # initialize var in graph
-
+train_writer = tf.summary.FileWriter(file_path+'log/', sess.graph)
 print('\tEpoch', '\t|    train loss\t' , '|    acc\t', '|    sen\t', '|    spe\t', '|    auc' )
 
 for epoch in range(10000000):
     _, loss_ = sess.run([train_op, loss], {tf_x: training_x, tf_y: training_y})
     if epoch % 50 == 0:
-        FN = sess.run(FN_op, {tf_x: test_x, tf_y: test_y})
-        FP = sess.run(FP_op, {tf_x: test_x, tf_y: test_y})
-        TN = sess.run(TN_op, {tf_x: test_x, tf_y: test_y})
-        TP = sess.run(TP_op, {tf_x: test_x, tf_y: test_y})
-        AUC = sess.run(AUC_op, {tf_x: test_x, tf_y: test_y})
+        FN, FP, TN, TP, AUC, train_summary = sess.run([FN_op, FP_op, TN_op, TP_op, AUC_op, merge_summary],
+                                                       {tf_x: test_x, tf_y: test_y})
         accuracy = (TP+TN)/(FP+FN+TP+TN)
         sensitivity = TP/(TP+FN)
         specificity = TN/(FP+TN)
+        train_writer.add_summary(train_summary, epoch)
+        saver.save(sess, file_path+'model/', global_step=epoch)
         print('\t', epoch, '\t|    %.6f \t' % loss_, '|    %.6f\t' % accuracy, '|    %.6f\t' % sensitivity, '|    %.6f' % specificity, '|    %.6f' % AUC )
+train_writer.close()
