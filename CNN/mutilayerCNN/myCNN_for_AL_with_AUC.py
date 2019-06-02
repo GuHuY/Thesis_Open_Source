@@ -12,8 +12,10 @@ random.seed(5)
 LR = 0.0001  # quicker train
 
 # 输入数据处理
-# data_name = 'RR_PT2_wavedet'
-data_name = 'White_Noise_Test/raw_noise' 
+# data_name = 'RR_PT1'
+# file_path = '/Users/rex/python/Thesis_Open_Source/' + data_name + '/'
+# # data_name = 'RR_PT2_wavedet'
+data_name = 'White_Noise_Test/RV_noise' 
 file_path = '/Users/rex/python/Thesis_Open_Source/' + data_name + '/'
 
 # test_data_size = 1000
