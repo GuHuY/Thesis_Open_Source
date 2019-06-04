@@ -69,7 +69,7 @@ plt.plot(PT1, 'gx-', label='PT1')
 
 
 scale_ls = range(0,2)
-index_ls = ['sqrs125','wavedet']
+index_ls = ['No noise','SNR=20']
 plt.xlim(-0.2,1.2)
 plt.ylim(bottom=0.8)
 plt.xticks(scale_ls,index_ls)  ## 可以设置坐标字
